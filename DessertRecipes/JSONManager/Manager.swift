@@ -41,6 +41,7 @@ class ListViewModel: ObservableObject {
 // Create a another viewmodel for individual meal api endpoint
 class DetailViewModel: ObservableObject {
     @Published var detailedMeals: DetailedMeals = DetailedMeals(meals: [])
+    @Published var dessertDisplayModel: DessertDisplayModel = DessertDisplayModel()
     
     // API Endpoint to Retrieve Details of Dessert
     func fetch(idMeal: String) {
@@ -57,6 +58,12 @@ class DetailViewModel: ObservableObject {
                 let detailedMeals = try JSONDecoder().decode(DetailedMeals.self, from: data)
                 DispatchQueue.main.async {
                     self?.detailedMeals = detailedMeals
+                    if let dessert = detailedMeals.meals.first {
+                        if let dessertDetails = self?.filterDesserts(detailedMeal: dessert) {
+                            self?.dessertDisplayModel = dessertDetails
+                            print(dessertDetails)
+                        }
+                    }
                 }
             }
             catch {
@@ -66,16 +73,82 @@ class DetailViewModel: ObservableObject {
         
         apiCall.resume()
     }
+    
+    func filterDesserts(detailedMeal: DetailedMeal) -> DessertDisplayModel {
+        var dessertDisplayModel: DessertDisplayModel = DessertDisplayModel()
+//        var dessertDetails: [(String, String)] = []
+        
+        let mirror = Mirror(reflecting: detailedMeal)
+        
+        for child in mirror.children {
+            if let value = child.value as? String,
+               let label = child.label {
+                if value != "" && value != " "
+                {
+                    switch label {
+                    case "idMeal":
+                        dessertDisplayModel.idMeal = value
+                    case "strMeal":
+                        dessertDisplayModel.strMeal = value
+                    case "strCategory":
+                        dessertDisplayModel.strCategory = value
+                    case "strArea":
+                        dessertDisplayModel.strArea = value
+                    case "strInstructions":
+                        dessertDisplayModel.strInstructions = value
+                    case "strMealThumb":
+                        dessertDisplayModel.strMealThumb = value
+                    case _ where label.contains("strIngredient"):
+                        dessertDisplayModel.strIngredients.append(value)
+                    case _ where label.contains("strMeasure"):
+                        dessertDisplayModel.strMeasure.append(value)
+                    case "strSource":
+                        dessertDisplayModel.strSource = value
+                    default:
+                        break
+                    }
+//                    dessertDetails.append((label, value))
+//                    print("key: \(label)", "value: \(value )")
+                }
+            }
+        }
+        
+//        print(filteredDesserts)
+//        print(dessertDisplayModel)
+        
+        return dessertDisplayModel
+    }
+    
+//    func nullToNil(value: AnyObject?) -> AnyObject? {
+//        if value is NSNull {
+//            return nil
+//        }
+//        else {
+//            return value
+//        }
+//    }
+}
+
+struct DessertDisplayModel: Hashable {
+    var idMeal: String = ""
+    var strMeal: String = ""
+    var strCategory: String = ""
+    var strArea: String = ""
+    var strInstructions: String = ""
+    var strMealThumb: String = ""
+    var strIngredients: [String] = []
+    var strMeasure: [String] = []
+    var strSource: String = ""
 }
 
 struct DetailedMeal: Codable, Hashable {
-    let idMeal: String
-    let strMeal: String
+    let idMeal: String?
+    let strMeal: String?
     let strDrinkAlternate: String?
     let strCategory: String?
     let strArea: String?
     let strInstructions: String?
-    let strMealThumb: String
+    let strMealThumb: String?
     let strTags: String?
     let strYouTube: String?
     let strIngredient1: String?

@@ -7,27 +7,53 @@
 
 import SwiftUI
 
+struct Ingredients {
+    var ingredients: [String] = []
+}
+
+struct Measurements {
+    var measurements: [String] = []
+}
+
 struct DessertDetailsView: View {
     @StateObject var dvm: DetailViewModel = DetailViewModel()
-    @State var idMeal: String = ""
+    
+    // Used to identify
+    @State var idMeal: String = "53049"
     
     var body: some View {
-        VStack {
+        ScrollView {
             if idMeal.isEmpty {
                 Text("Placeholder Name")
             }
             else {
-                ForEach(dvm.detailedMeals.meals, id: \.self) { meal in
-                    Text(meal.strMeal)
-                    Text(idMeal)
-                    AsyncImage(url: URL(string: meal.strMealThumb)) { image in
-                        image
-                            .resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(width: 300, height: 300)
+                // Display Thumbnail
+                AsyncImage(url: URL(string: dvm.dessertDisplayModel.strMealThumb)) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    ProgressView()
                 }
+                .frame(width: 300, height: 300)
+                
+                // Display Instructions
+                VStack {
+                    Text(dvm.dessertDisplayModel.strInstructions)
+                }
+                
+                // Display Ingredients
+                
+                ForEach(dvm.dessertDisplayModel.strIngredients, id: \.self) { ingredient in
+                    Text(ingredient)
+                }
+                
+                Spacer()
+                
+                // Display Measurements
+                ForEach(dvm.dessertDisplayModel.strMeasure, id: \.self) { measure in
+                    Text(measure)
+                }
+                
             }
         }
         .onAppear {

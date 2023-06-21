@@ -19,7 +19,17 @@ struct DessertListView: View {
                         NavigationLink(destination: {
                             DessertDetailsView(idMeal: meal.idMeal)
                         }, label: {
-                            Text(meal.strMeal)
+                            HStack {
+                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                    image
+                                        .resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 100, height: 100)
+                                
+                                Text(meal.strMeal)
+                            }
                         })
                     }
                     .listStyle(.plain)
