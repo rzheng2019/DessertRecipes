@@ -11,7 +11,6 @@
 		1D5A32092A42405A008FE875 /* DessertListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A32082A42405A008FE875 /* DessertListView.swift */; };
 		1D5A320B2A42405A008FE875 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A320A2A42405A008FE875 /* Assets.xcassets */; };
 		1D5A320E2A42405A008FE875 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A320D2A42405A008FE875 /* Preview Assets.xcassets */; };
-		1D5A321A2A424134008FE875 /* Desserts.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D5A32192A424134008FE875 /* Desserts.json */; };
 		1D5A32202A424313008FE875 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A321F2A424313008FE875 /* Manager.swift */; };
 		1D5A32232A424F2E008FE875 /* DessertDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5A32222A424F2E008FE875 /* DessertDetailsView.swift */; };
 /* End PBXBuildFile section */
@@ -22,7 +21,6 @@
 		1D5A32082A42405A008FE875 /* DessertListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertListView.swift; sourceTree = "<group>"; };
 		1D5A320A2A42405A008FE875 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D5A320D2A42405A008FE875 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1D5A32192A424134008FE875 /* Desserts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Desserts.json; sourceTree = "<group>"; };
 		1D5A321F2A424313008FE875 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		1D5A32222A424F2E008FE875 /* DessertDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,7 +58,6 @@
 				1D5A321D2A424244008FE875 /* App */,
 				1D5A321E2A42424C008FE875 /* JSONManager */,
 				1D5A32212A424E3A008FE875 /* Views */,
-				1D5A32142A424075008FE875 /* Data Sets */,
 				1D5A320A2A42405A008FE875 /* Assets.xcassets */,
 				1D5A320C2A42405A008FE875 /* Preview Content */,
 			);
@@ -73,14 +70,6 @@
 				1D5A320D2A42405A008FE875 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1D5A32142A424075008FE875 /* Data Sets */ = {
-			isa = PBXGroup;
-			children = (
-				1D5A32242A42587D008FE875 /* List */,
-			);
-			path = "Data Sets";
 			sourceTree = "<group>";
 		};
 		1D5A321D2A424244008FE875 /* App */ = {
@@ -106,14 +95,6 @@
 				1D5A32222A424F2E008FE875 /* DessertDetailsView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		1D5A32242A42587D008FE875 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				1D5A32192A424134008FE875 /* Desserts.json */,
-			);
-			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,7 +156,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D5A320E2A42405A008FE875 /* Preview Assets.xcassets in Resources */,
-				1D5A321A2A424134008FE875 /* Desserts.json in Resources */,
 				1D5A320B2A42405A008FE875 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Create a viewmodel for list of meal api endpoint
 class ListViewModel: ObservableObject {
     @Published var meals: Meals = Meals(meals: [])
     
@@ -136,24 +137,4 @@ struct Meal: Codable {
 struct Meals: Codable {
     let meals: [Meal]
 }
-
-//extension Bundle {
-//    func decode<T: Decodable>(file: String) -> T {
-//        // Check for valid URL
-//        guard let url = self.url(forResource: file, withExtension: nil) else {
-//            fatalError("Could not find \(file) in the project.")
-//        }
-//        // Try to load data from URL
-//        guard let data = try? Data(contentsOf: url) else {
-//            fatalError("Could not load \(file) in the project")
-//        }
-//        // Read data that was loaded
-//        let decoder = JSONDecoder()
-//        guard let loadedData = try? decoder.decode(T.self, from: data) else {
-//            fatalError("Could not decode \(file) in the project")
-//        }
-//
-//        return loadedData
-//    }
-//}
 
