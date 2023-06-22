@@ -80,6 +80,7 @@ class DetailViewModel: ObservableObject {
         
         let mirror = Mirror(reflecting: detailedMeal)
         
+        // Filtered out null and empty values
         for child in mirror.children {
             if let value = child.value as? String,
                let label = child.label {
@@ -95,7 +96,8 @@ class DetailViewModel: ObservableObject {
                     case "strArea":
                         dessertDisplayModel.strArea = value
                     case "strInstructions":
-                        dessertDisplayModel.strInstructions = value
+                        // Filter instructions by newline
+                        dessertDisplayModel.strInstructions = value.split(whereSeparator: \.isNewline)
                     case "strMealThumb":
                         dessertDisplayModel.strMealThumb = value
                     case _ where label.contains("strIngredient"):
@@ -107,26 +109,20 @@ class DetailViewModel: ObservableObject {
                     default:
                         break
                     }
-//                    dessertDetails.append((label, value))
-//                    print("key: \(label)", "value: \(value )")
                 }
             }
         }
         
-//        print(filteredDesserts)
-//        print(dessertDisplayModel)
+        // Assign strTotalIngredients For Display Purposes
+        if dessertDisplayModel.strIngredients.count == dessertDisplayModel.strMeasure.count {
+            for index in dessertDisplayModel.strIngredients.indices {
+                dessertDisplayModel.strTotalIngredients.append(TotalIngredients(ingredient: dessertDisplayModel.strIngredients[index],
+                                                                                measure: dessertDisplayModel.strMeasure[index]))
+            }
+        }
         
         return dessertDisplayModel
     }
-    
-//    func nullToNil(value: AnyObject?) -> AnyObject? {
-//        if value is NSNull {
-//            return nil
-//        }
-//        else {
-//            return value
-//        }
-//    }
 }
 
 struct DessertDisplayModel: Hashable {
@@ -134,11 +130,17 @@ struct DessertDisplayModel: Hashable {
     var strMeal: String = ""
     var strCategory: String = ""
     var strArea: String = ""
-    var strInstructions: String = ""
+    var strInstructions: [String.SubSequence] = []
     var strMealThumb: String = ""
     var strIngredients: [String] = []
     var strMeasure: [String] = []
+    var strTotalIngredients: [TotalIngredients] = []
     var strSource: String = ""
+}
+
+struct TotalIngredients: Hashable {
+    var ingredient: String = ""
+    var measure: String = ""
 }
 
 struct DetailedMeal: Codable, Hashable {

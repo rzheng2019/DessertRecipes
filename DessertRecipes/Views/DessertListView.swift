@@ -12,34 +12,36 @@ struct DessertListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-//                     Sort Dessert Names Displayed
-                    ForEach(vm.meals.meals.sorted { $0.strMeal < $1.strMeal}, id: \.idMeal) { meal in
-                        NavigationLink(destination: {
-                            DessertDetailsView(idMeal: meal.idMeal)
-                        }, label: {
-                            HStack {
-                                AsyncImage(url: URL(string: meal.strMealThumb)) { image in
-                                    image
-                                        .resizable()
-                                } placeholder: {
-                                    ProgressView()
+            ZStack {
+                VStack {
+                    List {
+    //                     Sort Dessert Names Displayed
+                        ForEach(vm.meals.meals.sorted { $0.strMeal < $1.strMeal}, id: \.idMeal) { meal in
+                            NavigationLink(destination: {
+                                DessertDetailsView(idMeal: meal.idMeal)
+                            }, label: {
+                                HStack {
+                                    AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                        image
+                                            .resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 100, height: 100)
+                                    
+                                    Text(meal.strMeal)
                                 }
-                                .frame(width: 100, height: 100)
-                                
-                                Text(meal.strMeal)
-                            }
-                        })
+                            })
+                        }
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
                     }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
+                    .onAppear {
+                        vm.fetch()
+                    }
                 }
-                .onAppear {
-                    vm.fetch()
-                }
+                .padding(.top, 40)
             }
-            .padding(.top, 40)
             .ignoresSafeArea()
         }
     }
