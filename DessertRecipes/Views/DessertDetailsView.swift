@@ -15,7 +15,7 @@ struct DessertDetailsView: View {
     
     var body: some View {
         ZStack {
-            Color.brown.opacity(0.4)
+            Color.brown.opacity(0.2).edgesIgnoringSafeArea(.all)
             
             ScrollView {
                 if idMeal.isEmpty {
@@ -27,12 +27,11 @@ struct DessertDetailsView: View {
                         Text(dvm.dessertDisplayModel.strMeal)
                             .font(.custom("Didot", size: 35))
                             .bold()
-                            .padding(.top, 60)
                             .multilineTextAlignment(.center)
-                    }
-                    HStack {
-                        Text(dvm.dessertDisplayModel.strArea + " " + dvm.dessertDisplayModel.strCategory)
-                            .font(.custom("Didot", size: 25))
+                        HStack {
+                            Text(dvm.dessertDisplayModel.strArea + " " + dvm.dessertDisplayModel.strCategory)
+                                .font(.custom("Didot", size: 25))
+                        }
                     }
                     
                     // Display Thumbnail
@@ -59,10 +58,12 @@ struct DessertDetailsView: View {
                     }
                     .padding(.leading, 8)
                     
+                    // Display ingredients along with corresponding measurements
                     VStack(alignment: .leading) {
                         Text("Ingredients: ")
                             .font(.custom("Didot", size: 30))
                             .bold()
+                            .padding(.leading, 10)
                             .padding(.bottom)
                         HStack {
                             // Display Measurements
@@ -70,11 +71,13 @@ struct DessertDetailsView: View {
                                 ForEach(dvm.dessertDisplayModel.strTotalIngredients, id: \.self) { total in
                                     Text("\u{2022} " + total.measure + " " + total.ingredient)
                                         .font(.custom("Didot", size: 20))
+                                        .multilineTextAlignment(.leading)
                                         .padding(.bottom, 5)
                                 }
                             }
+                            Spacer()
                         }
-                        .padding(.trailing, 170)
+                        .padding(.leading, 18)
                         .padding(.bottom, 50)
                     }
                     
@@ -84,8 +87,8 @@ struct DessertDetailsView: View {
             .onAppear {
                 dvm.fetch(idMeal: idMeal)
             }
+            .scrollIndicators(.hidden)
         }
-        .ignoresSafeArea()
     }
 }
 

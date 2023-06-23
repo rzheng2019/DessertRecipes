@@ -13,14 +13,25 @@ struct DessertListView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                Color.brown.opacity(0.2).ignoresSafeArea()
+                
                 VStack {
+                    HStack {
+                        Text("Desserts")
+                            .font(.custom("Didot", size: 35))
+                            .bold()
+                            .padding(.leading, 20)
+                        Spacer()
+                    }
+                    
                     List {
-    //                     Sort Dessert Names Displayed
+                        //                     Sort Dessert Names Displayed
                         ForEach(vm.meals.meals.sorted { $0.strMeal < $1.strMeal}, id: \.idMeal) { meal in
                             NavigationLink(destination: {
                                 DessertDetailsView(idMeal: meal.idMeal)
                             }, label: {
                                 HStack {
+                                    Text("")
                                     AsyncImage(url: URL(string: meal.strMealThumb)) { image in
                                         image
                                             .resizable()
@@ -30,19 +41,19 @@ struct DessertListView: View {
                                     .frame(width: 100, height: 100)
                                     
                                     Text(meal.strMeal)
+                                        .font(.custom("Didot", size: 20))
                                 }
                             })
+                            .listRowBackground(Color.brown.opacity(0.05).ignoresSafeArea())
                         }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
                     }
+                    .scrollContentBackground(.hidden)
+                    .listStyle(PlainListStyle())
                     .onAppear {
                         vm.fetch()
                     }
                 }
-                .padding(.top, 40)
             }
-            .ignoresSafeArea()
         }
     }
 }
