@@ -22,7 +22,7 @@ class ListViewModel: ObservableObject {
                 return
             }
             
-            // Convert to JSON
+            // Convert JSON Data
             do {
                 let meals = try JSONDecoder().decode(Meals.self, from: data)
                 DispatchQueue.main.async {
@@ -79,6 +79,7 @@ class DetailViewModel: ObservableObject {
 //        var dessertDetails: [(String, String)] = []
         
         let mirror = Mirror(reflecting: detailedMeal)
+//        print(detailedMeal)
         
         // Filtered out null and empty values
         for child in mirror.children {
@@ -116,8 +117,22 @@ class DetailViewModel: ObservableObject {
         // Assign strTotalIngredients For Display Purposes
         if dessertDisplayModel.strIngredients.count == dessertDisplayModel.strMeasure.count {
             for index in dessertDisplayModel.strIngredients.indices {
-                dessertDisplayModel.strTotalIngredients.append(TotalIngredients(ingredient: dessertDisplayModel.strIngredients[index],
-                                                                                measure: dessertDisplayModel.strMeasure[index]))
+                // For measurement strings that don't have a numbers, swap ingredients and measurements
+                if let firstChar = dessertDisplayModel.strMeasure[index].first {
+                    if !firstChar.isNumber {
+                        dessertDisplayModel.strTotalIngredients.append(TotalIngredients(ingredient: dessertDisplayModel.strMeasure[index],
+                                                                                        measure: dessertDisplayModel.strIngredients[index]))
+                    }
+                    else {
+                        dessertDisplayModel.strTotalIngredients.append(TotalIngredients(ingredient: dessertDisplayModel.strIngredients[index],
+                                                                                        measure: dessertDisplayModel.strMeasure[index]))
+                    }
+                }
+                else {
+                    // Measurement doesn't start with letter
+                    dessertDisplayModel.strTotalIngredients.append(TotalIngredients(ingredient: dessertDisplayModel.strIngredients[index],
+                                                                                    measure: dessertDisplayModel.strMeasure[index]))
+                }
             }
         }
         

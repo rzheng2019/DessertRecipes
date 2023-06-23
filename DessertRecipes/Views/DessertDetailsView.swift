@@ -11,7 +11,7 @@ struct DessertDetailsView: View {
     @StateObject var dvm: DetailViewModel = DetailViewModel()
     
     // Used to identify
-    @State var idMeal: String = "53049"
+    @State var idMeal: String = "52966"
     
     var body: some View {
         ZStack {
@@ -87,7 +87,7 @@ struct DessertDetailsView: View {
             .onAppear {
                 dvm.fetch(idMeal: idMeal)
             }
-            .scrollIndicators(.hidden)
+//            .scrollIndicators(.hidden)
         }
     }
 }
