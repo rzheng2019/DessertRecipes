@@ -25,7 +25,7 @@ struct DessertListView: View {
                     }
                     
                     List {
-                        //                     Sort Dessert Names Displayed
+                        // Sort Dessert Names Displayed
                         ForEach(vm.meals.meals.sorted { $0.strMeal < $1.strMeal}, id: \.idMeal) { meal in
                             NavigationLink(destination: {
                                 DessertDetailsView(idMeal: meal.idMeal)
