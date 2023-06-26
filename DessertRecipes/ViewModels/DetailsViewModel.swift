@@ -48,7 +48,7 @@ class DetailsViewModel: ObservableObject {
         let mirror = Mirror(reflecting: detailedMeal)
 //        print(detailedMeal)
         
-        // Filtered out null and empty values
+        // Filter out null and empty values
         for child in mirror.children {
             if let value = child.value as? String,
                let label = child.label {

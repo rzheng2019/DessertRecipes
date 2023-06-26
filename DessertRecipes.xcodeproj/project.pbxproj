@@ -46,6 +46,7 @@
 		1D75BA982A47C2740052D30B /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		1D75BA9E2A48C2070052D30B /* URLValidationTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URLValidationTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D75BAA02A48C2070052D30B /* URLValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLValidationTest.swift; sourceTree = "<group>"; };
+		1DB7C99F2A491A5400904730 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 		1D5A31FA2A424059008FE875 = {
 			isa = PBXGroup;
 			children = (
+				1DB7C99F2A491A5400904730 /* README.md */,
 				1D5A32052A42405A008FE875 /* DessertRecipes */,
 				1D75BA9F2A48C2070052D30B /* URLValidationTest */,
 				1D5A32042A42405A008FE875 /* Products */,
