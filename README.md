@@ -10,7 +10,7 @@ and the ingredients required.
 
 1. Make sure to have XCode Version 14.3.1 or above installed on your computer.
 2. Open the project files in XCode.
-3. (Optional) Build and run unit tests.
+3. (Optional) Build and run unit tests (Unit tests only seem to be working on iPhone 14 versions at the moment).
 4. Build and run project.
 
 ## Architecture
