@@ -46,7 +46,6 @@ class DetailsViewModel: ObservableObject {
         var dessertDisplayModel: DisplayViewModel = DisplayViewModel()
         
         let mirror = Mirror(reflecting: detailedMeal)
-//        print(detailedMeal)
         
         // Filter out null and empty values
         for child in mirror.children {
