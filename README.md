@@ -1,6 +1,6 @@
 #  Dessert Recipes
 
-## Description:
+## Description
 
 Dessert Recipes is a native iOS application that leverages TheMealDB, a Free Meal API to display a 
 list of dessert recipes. It is designed to showcase what the dessert looks like, the instructions to make it, 
