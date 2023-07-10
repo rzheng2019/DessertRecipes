@@ -6,6 +6,8 @@ Dessert Recipes is a native iOS application that leverages TheMealDB, a Free Mea
 list of dessert recipes. It is designed to showcase what the dessert looks like, the instructions to make it, 
 and the ingredients required.
 
+![](https://github.com/rzheng2019/DessertRecipes/blob/main/DessertRecipesGif.gif)
+
 ## Getting Started
 
 1. Make sure to have XCode Version 14.3.1 or above installed on your computer.
