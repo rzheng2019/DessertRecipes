@@ -21,7 +21,7 @@ and the ingredients required.
 
 ## Structure
 
-- "Models": Files that cointain the models for what a meal consists of.
+- "Models": Files that contain the models for what a meal consists of.
 - "ViewModels": Files that contain the view models that provide data and functionality to be used by views.
 - "Views": Files that use view models to display user interface with data.
 - "URLValidationTest": Unit tests that check the validity of the URLs from the API.
